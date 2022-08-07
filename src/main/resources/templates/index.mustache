@@ -2,9 +2,26 @@
 
     <h1>스프링부트 웹 서비스</h1>
     <div class="col-md-12">
+        <!-- 로그인 기능 영역 -->
         <div class="row">
             <div class="col-md-6">
                 <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+                <!-- userName -> userNames로 변경 : 구글 계정 이름이 아닌 OS 사용자로 인식하여 충돌 방지를 위해 -->
+                {{#userNames}}
+                    Logged in as: <span id="user">{{userNames}}</span>
+                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                {{/userNames}}
+                {{^userNames}}
+                    <a href="/oauth2/authorization/google" class="btn btn-danger active" role="button">
+                        Google Login
+                    </a>
+                    <a href="/oauth2/authorization/naver" class="btn btn-success active" role="button">
+                        Naver Login
+                    </a>
+                    <a href="/oauth2/authorization/kakao" class="btn btn-warning active" role="button">
+                        Kakao Login
+                    </a>
+                {{/userNames}}
             </div>
         </div>
         <br>
